@@ -1,121 +1,103 @@
-# =====================================================
 # Tema: Listas
-# =====================================================
 
 """
 Descripción:
 Una lista en Python es una colección ordenada y mutable que permite elementos duplicados. Es uno de los tipos de datos más utilizados para almacenar múltiples elementos en una sola variable. Las listas se pueden indexar, cortar, recorrer, modificar y ordenar.
 """
 
-# =====================================================
-# 1. Sintaxis básica
-# =====================================================
+# Sintaxis básica
 
-my_list = ["apple", "banana", "cherry", "apple", "cherry"]
-print(len(my_list))  # Longitud de la lista
+mi_lista = ["apple", "banana", "cherry", "apple", "cherry"]
+print(len(mi_lista))  # Longitud de la lista
 
-list_1 = ["apple", "banana", "cherry"]
-list_2 = [1, 2, 3, 4, 5]
-list_3 = [True, False, True]
-list_mixed = ["abc", 123, True]
-print(type(list_mixed))
+lista_1 = ["apple", "banana", "cherry"]
+lista_2 = [1, 2, 3, 4, 5]
+lista_3 = [True, False, True]
+lista_mixta = ["abc", 123, True]
+print(type(lista_mixta))
 
 # Constructor de lista
-constructor_list = list(("banana", "apple", "orange"))
-print(constructor_list)
+lista_constructor = list(("banana", "apple", "orange"))
+print(lista_constructor)
 
-# =====================================================
-# 2. Acceso y modificación
-# =====================================================
+# Acceso y modificación
 
-list_1 = list(("banana", "apple", "orange"))
-print(list_1[0])
-print(list_1[-1])
+lista_1 = list(("banana", "apple", "orange"))
+print(lista_1[0])
+print(lista_1[-1])
 
-this_list = ["apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
-print(this_list[2:5])
-print(this_list[:4])
-print(this_list[2:])
-print(this_list[-4:-2])
+mi_lista = ["apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
+print(mi_lista[2:5])
+print(mi_lista[:4])
+print(mi_lista[2:])
+print(mi_lista[-4:-2])
 
-# Verificar existencia
-target = "apple"
-if target in this_list:
-    print(f"{target} existe en la lista")
+objetivo = "apple"
+if objetivo in mi_lista:
+    print(f"{objetivo} existe en la lista")
 
-# Modificar elementos
-this_list[0] = "grape"
-this_list[1:3] = ["grape", "watermelon"]
+mi_lista[0] = "grape"
+mi_lista[1:3] = ["grape", "watermelon"]
 
-# =====================================================
-# 3. Inserción y extensión
-# =====================================================
+# Inserción y extensión
 
-this_list = ["banana"]
-this_list.insert(1, "grape")
-this_list.append("apple")
+mi_lista = ["banana"]
+mi_lista.insert(1, "grape")
+mi_lista.append("apple")
 
-# extend con listas y otros iterables
-tropical = ["mango", "pineapple", "papaya"]
-this_list.extend(tropical)
-this_tuple = ("mango", "pineapple")
-this_list.extend(this_tuple)
+frutas_tropicales = ["mango", "pineapple", "papaya"]
+mi_lista.extend(frutas_tropicales)
+tupla_frutas = ("mango", "pineapple")
+mi_lista.extend(tupla_frutas)
 
-# =====================================================
-# 4. Eliminación de elementos
-# =====================================================
+# Eliminación de elementos
 
-this_list = ["apple", "banana", "cherry"]
-this_list.remove("apple")
-this_list.pop(1)
-del this_list[0]
-this_list.clear()
+mi_lista = ["apple", "banana", "cherry"]
+mi_lista.remove("apple")
+mi_lista.pop(1)
+del mi_lista[0]
+mi_lista.clear()
 
-# =====================================================
-# 5. Recorrido de listas
-# =====================================================
+# Recorrido de listas
 
-this_list = ["apple", "banana", "cherry"]
-for x in this_list:
-    print(x)
+mi_lista = ["apple", "banana", "cherry"]
+for fruta in mi_lista:
+    print(fruta)
 
-for i in range(len(this_list)):
-    print(this_list[i])
+for i in range(len(mi_lista)):
+    print(mi_lista[i])
 
 i = 0
-while i < len(this_list):
-    print(this_list[i])
+while i < len(mi_lista):
+    print(mi_lista[i])
     i += 1
 
-# List comprehension
-[print(x) for x in this_list]
+[print(x) for x in mi_lista]
 
-fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
-newlist = [x for x in fruits if "a" in x]
-print(newlist)
+frutas = ["apple", "banana", "cherry", "kiwi", "mango"]
+lista_nueva = [x for x in frutas if "a" in x]
+print(lista_nueva)
 
-numbers = [n for n in range(10) if n < 5]
-print(numbers)
+numeros = [n for n in range(10) if n < 5]
+print(numeros)
 
-upper_fruits = [x.upper() for x in fruits]
-print(upper_fruits)
+frutas_mayus = [x.upper() for x in frutas]
+print(frutas_mayus)
 
-fill_list = ["hello" for _ in fruits]
-print(fill_list)
+lista_relleno = ["hello" for _ in frutas]
+print(lista_relleno)
 
-conditional_list = [x if x != "banana" else "apple" for x in fruits]
-print(conditional_list)
+lista_condicional = [x if x != "banana" else "apple" for x in frutas]
+print(lista_condicional)
 
-# =====================================================
-# 6. Ordenamiento
-# =====================================================
+# Ordenamiento
 
-this_list = ["orange", "mango", "kiwi", "pineapple", "banana"]
-this_list.sort()
-print(this_list)
+mi_lista = ["orange", "mango", "kiwi", "pineapple", "banana"]
+mi_lista.sort()
+print(mi_lista)
 
-this_list.sort(reverse=True)
-print(this_list)
+mi_lista.sort(reverse=True)
+print(mi_lista)
 
 numeros = [100, 50, 65, 82, 23]
 numeros.sort()
@@ -124,54 +106,44 @@ print(numeros)
 numeros.sort(reverse=True)
 print(numeros)
 
-
-def my_func(n):
+def mi_func(n):
     return abs(n - 23)
 
-
-numeros.sort(key=my_func)
+numeros.sort(key=mi_func)
 print(numeros)
 
-this_list = ["banana", "Orange", "kiwi", "cherry"]
-this_list.sort(key=str.lower)
-print(this_list)
+mi_lista = ["banana", "Orange", "kiwi", "cherry"]
+mi_lista.sort(key=str.lower)
+print(mi_lista)
 
-this_list.reverse()
-print(this_list)
+mi_lista.reverse()
+print(mi_lista)
 
-# =====================================================
-# 7. Copiar listas
-# =====================================================
+# Copiar listas
 
 original = ["apple", "banana", "cherry"]
-copy_1 = original.copy()
-copy_2 = list(original)
-copy_3 = original[:]
-print(id(original), id(copy_1))
+copia_1 = original.copy()
+copia_2 = list(original)
+copia_3 = original[:]
+print(id(original), id(copia_1))
 
-# =====================================================
-# 8. Unir listas
-# =====================================================
+# Unir listas
 
-list_1 = ["a", "b", "c"]
-list_2 = [1, 2, 3]
-combined = list_1 + list_2
-print(combined)
+lista_1 = ["a", "b", "c"]
+lista_2 = [1, 2, 3]
+combinada = lista_1 + lista_2
+print(combinada)
 
-# con bucle
-for x in list_2:
-    list_1.append(x)
-print(list_1)
+for x in lista_2:
+    lista_1.append(x)
+print(lista_1)
 
-# con extend
-list_1 = ["a", "b", "c"]
-list_2 = [1, 2, 3]
-list_1.extend(list_2)
-print(list_1)
+lista_1 = ["a", "b", "c"]
+lista_2 = [1, 2, 3]
+lista_1.extend(lista_2)
+print(lista_1)
 
-# =====================================================
-# 9. Métodos disponibles para listas
-# =====================================================
+# Métodos disponibles para listas
 
 """
 append()    -> Agrega un elemento al final
