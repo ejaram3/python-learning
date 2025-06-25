@@ -1,87 +1,202 @@
 # Tema: Diccionarios
-diccionario = {
-    "marca": "ford",
-    "modelo": "Mustang",
-    "anio": 1964,
+
+"""
+Descripción:
+Estructura de datos que almacena pares clave:valor. Es mutable y permite almacenar múltiples tipos de datos. A partir de Python 3.7 mantiene el orden de inserción.
+"""
+
+# Sintaxis básica
+
+car = {"brand": "Ford", "model": "Mustang", "year": 1964}
+print(car["brand"])
+
+car = {"brand": "Ford", "model": "Mustang", "year": 1964, "year": 2024}
+print(car)
+
+print(len(car))
+
+car = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "electric": False,
+    "year": 1964,
+    "colors": ["red", "white", "black"],
 }
-print(diccionario)
+print(car)
 
-print(diccionario["modelo"])
+persona = dict(id=1, name="chachito", age=18)
+print(type(persona))
 
-# Longitud
-print(len(diccionario))
+# Acceso a elementos
 
-# Articulos de diccionario - tipos de datos
-auto = {
-    "marca": "ford",
-    "electrico": False,
-    "anio": 1964,
-    "colores": ["rojo", "blanco", "azul"]
+print(car["brand"])
+print(car["colors"])
+print(car.get("model"))
+print(car.get("engine"))
+print(car.get("engine", "not defined"))
+
+# Llaves y valores
+
+print(car.keys())
+car["engine"] = {"type": "gasoline"}
+print(car.keys())
+
+print(car.values())
+car["features"] = "automatic"
+print(car.values())
+
+print(car.items())
+car["previous_owners"] = 1
+print(car)
+
+if "engine" in car:
+    print("Yes, exist engine in dict")
+
+# Modificación
+
+print(car["year"])
+car["year"] = 2000
+print(car["year"])
+
+car.update({"engine": {"type": "Gasoline", "displacement": "1.8L", "horsepower": 140}})
+print(car["engine"])
+
+car["mileage"] = 23000
+print(car["mileage"])
+
+car.update({"license_plate": "ABC123"})
+print(car["license_plate"])
+
+# Eliminación
+
+car.pop("engine")
+print(car)
+
+car.update({"engine": {"type": "Gasoline", "displacement": "1.8L", "horsepower": 140}})
+print(car)
+car.popitem()
+print(car)
+
+del car["brand"]
+print(car)
+
+del car
+
+car = {"brand": "Toyota", "model": "Corolla", "year": 2022, "color": "gray"}
+car.clear()
+print(car)
+
+# Ciclos
+
+car = {
+    "brand": "Toyota",
+    "model": "Corolla",
+    "year": 2022,
+    "color": "gray",
+    "engine": {"type": "Gasoline", "displacement": "1.8L", "horsepower": 140},
+    "features": {
+        "transmission": "Automatic",
+        "air_conditioning": True,
+        "touch_screen": True,
+        "parking_sensors": False,
+    },
+    "previous_owners": 1,
+    "mileage": 23000,
+    "license_plate": "ABC123",
+    "service_history": [
+        {"date": "2023-03-10", "service": "Oil change"},
+        {"date": "2024-01-15", "service": "Tire rotation"},
+    ],
 }
 
-print(type(auto))
+for x in car:
+    print(x)
 
-# Constructor dict()
-persona = dict(nombre="Elkin", edad=27, pais="Colombia")
-print(persona)
+for x in car:
+    print(car[x])
 
-# Acceder a elementos del diccionario
-marca = auto["marca"]
-print(marca)
+for value in car.values():
+    print(value)
 
-# Usando el metodo get() revisive 2 parametros elemento y valor por default si no encuentra valor no arroja error
-modelo = auto.get("modelo")
-# si no se le asigna ningun valor retorna None
-print(modelo)
-# se le puede definir un valor por default como segundo parametro
-modelo = auto.get("modelo", "sin valor")
-print(modelo)
+for key in car.keys():
+    print(key)
 
-# Obtener llaves
-llaves = auto.keys()
-print(llaves)
+for key, value in car.items():
+    print(key, ":", value)
 
-auto["cantidad"] = 3
+# Copias
 
-llaves = auto.keys()
-print(llaves)
+car1 = car.copy()
+car2 = dict(car)
+car3 = {**car}
 
-# Obtener valores
-valores = auto.values()
-print(valores)
+# Anidados
 
-auto["pais"] = "EEUU"
+people = {
+    "person_1": {
+        "name": "Alice",
+        "age": 30,
+        "email": "alice@example.com",
+        "address": {"city": "Bogotá", "country": "Colombia"},
+    },
+    "person_2": {
+        "name": "Bob",
+        "age": 25,
+        "email": "bob@example.com",
+        "address": {"city": "Medellín", "country": "Colombia"},
+    },
+}
+print(people)
 
-valores = auto.values()
-print(valores)
+people["person_3"] = {
+    "name": "chanchito",
+    "age": 4,
+    "email": "chanchito@mail.com",
+    "address": {"city": "new york", "country": "EEUU"},
+}
+print(people)
 
-# Obtener articulos o elementos
-elementos = auto.items()
-print(elementos)
+print(people["person_1"]["address"]["city"])
 
-auto["precio"] = 214.521435
-print(auto)
+for x, obj in people.items():
+    print(x)
+    for y in obj:
+        print(y, ":", obj[y])
 
-elementos = auto.items()
-print(elementos)
+agenda = {
+    "jose": {
+        "telefono": 2524252,
+        "gustos": ["bailar", "cantar", "pintar"],
+        "ciudad": "colombia",
+    },
+    "pedro": {"telefono": 636252, "gustos": ["jugar", "leer"], "ciudad": "peru"},
+    "carlos": {"telefono": 73352, "gustos": ["leer", "viajar"], "ciudad": "chile"},
+}
 
-# Comprobar si un valor existe
-# Nota: se valida por claves no por valores
-if "marca" in auto:
-    print("Existe al marca dentro del diccionario auto")
+for persona, datos in agenda.items():
+    if "colombia" in datos["ciudad"]:
+        print(f"{persona} es de colombia")
 
-# Modificar articulos de un diccionario
-auto["anio"] = 1999
-print(auto["anio"])
+for persona, datos in agenda.items():
+    for clave in datos:
+        if "gustos" in clave:
+            print(persona, datos[clave])
 
-# Actualizar un diccionario
-auto.update({"anio": 2020})
-print(auto["anio"])
+for persona, datos in agenda.items():
+    print(f"Datos de {persona}:")
+    for clave in datos:
+        print(f"    {clave} {datos[clave]}")
 
-# Agregar articulos a un diccionario
-auto["motor"] = 3200
-print(auto)
-
-# Actualizar diccionario
-auto.update({"peso": 2.522})
-print(auto)
+"""
+clear()         → Elimina todos los elementos
+copy()          → Devuelve una copia
+fromkeys()      → Crea un nuevo diccionario con claves y un valor
+get()           → Devuelve el valor de una clave
+items()         → Devuelve lista de pares clave:valor
+keys()          → Devuelve lista de claves
+pop()           → Elimina un elemento por clave
+popitem()       → Elimina el último par insertado
+setdefault()    → Devuelve valor si existe, si no, inserta con valor dado
+update()        → Actualiza o añade elementos
+values()        → Devuelve todos los valores
+"""
