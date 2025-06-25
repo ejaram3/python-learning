@@ -1,151 +1,110 @@
-# =====================================================
 # Tema: Tuplas
-# =====================================================
 
 """
 Descripción:
 Una tupla es una colección ordenada e inmutable que permite elementos duplicados. Es uno de los 4 tipos de estructuras de datos integradas en Python junto con listas, diccionarios y conjuntos. Las tuplas se declaran con paréntesis () y son útiles cuando se desea proteger los datos de modificaciones accidentales.
 """
 
-# =====================================================
-# 1. Sintaxis básica
-# =====================================================
+# Sintaxis básica
 
-# Crear una tupla
-this_tuple = ("apple", "banana", "cherry")
-print(this_tuple)
+tupla_frutas = ("apple", "banana", "cherry")
+print(tupla_frutas)
 
 # Permite duplicados
-this_tuple = ("apple", "banana", "cherry", "apple", "cherry")
-print(this_tuple)
+tupla_frutas = ("apple", "banana", "cherry", "apple", "cherry")
+print(tupla_frutas)
 
-# Longitud
-print(len(this_tuple))
+print(len(tupla_frutas))
 
 # Tupla con un solo elemento
-one_item = ("apple",)
-print(type(one_item))
+una_fruta = ("apple",)
+print(type(una_fruta))
 
-not_tuple = ("apple")  # Esto es un str
-print(type(not_tuple))
+no_tupla = ("apple")
+print(type(no_tupla))
 
-# =====================================================
-# 2. Tipos y constructor
-# =====================================================
+# Tipos y constructor
 
-tuple_1 = ("apple", "banana", "cherry")
-tuple_2 = (1, 2, 3, 4, 5)
-tuple_3 = (True, False, False)
-tuple_mixed = ("abc", 34, True, 40, "male")
+numeros = (1, 2, 3, 4, 5)
+booleanos = (True, False, False)
+tupla_mixta = ("abc", 34, True, 40, "male")
+tupla_constructor = tuple(("apple", "banana", "cherry"))
+print(type(tupla_constructor))
 
-this_tuple = tuple(("apple", "banana", "cherry"))
-print(type(this_tuple))
+# Acceso y slicing
 
-# =====================================================
-# 3. Acceso y slicing
-# =====================================================
+print(tupla_constructor[0])
+print(tupla_constructor[-1])
 
-print(this_tuple[0])           # Primer elemento
-print(this_tuple[-1])          # Último elemento
+frutas = ("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")
+print(frutas[2:5])
+print(frutas[:4])
+print(frutas[2:])
+print(frutas[-4:-2])
 
-this_tuple = ("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")
-print(this_tuple[2:5])         # Rango positivo
-print(this_tuple[:4])
-print(this_tuple[2:])
-print(this_tuple[-4:-2])       # Rango negativo
-
-if "apple" in this_tuple:
+if "apple" in frutas:
     print("Sí, apple está en la tupla")
 
-# =====================================================
-# 4. Inmutabilidad y soluciones
-# =====================================================
+# Inmutabilidad y soluciones
 
-# Modificar una tupla → convertir a lista y volver a tupla
-x = ("apple", "banana", "cherry")
-y = list(x)
-y[1] = "kiwi"
-x = tuple(y)
-print(x)
+tupla_origen = ("apple", "banana", "cherry")
+lista_temporal = list(tupla_origen)
+lista_temporal[1] = "kiwi"
+tupla_modificada = tuple(lista_temporal)
+print(tupla_modificada)
 
-# Agregar elementos
-x = list(x)
-x.append("naranja")
-x = tuple(x)
-print(x)
+lista_temporal.append("naranja")
+tupla_agregada = tuple(lista_temporal)
+print(tupla_agregada)
 
-# Concatenar tuplas
-this_tuple = ("apple", "banana", "cherry")
-y = ("orange",)
-this_tuple += y
-print(this_tuple)
+tupla_concatenada = ("apple", "banana", "cherry") + ("orange",)
+print(tupla_concatenada)
 
-# Eliminar elementos → convertir a lista
-this_tuple = ("apple", "banana", "cherry")
-y = list(this_tuple)
-y.remove("cherry")
-this_tuple = tuple(y)
-print(this_tuple)
+lista_eliminar = list(("apple", "banana", "cherry"))
+lista_eliminar.remove("cherry")
+tupla_final = tuple(lista_eliminar)
+print(tupla_final)
 
-# Eliminar completamente
-# del this_tuple
+# Desempaquetado de tuplas
 
-# =====================================================
-# 5. Desempaquetado de tuplas
-# =====================================================
+colores = ("verde", "amarillo", "rojo")
+verde, amarillo, rojo = colores
+print(verde, amarillo, rojo)
 
-fruits = ("apple", "banana", "cherry")
-(green, yellow, red) = fruits
-print(green, yellow, red)
+frutas_ext = ("apple", "banana", "cherry", "strawberry", "raspberry")
+primero, segundo, *resto = frutas_ext
+print(primero, segundo, resto)
 
-fruits = ("apple", "banana", "cherry", "strawberry", "raspberry")
-(green, yellow, *red) = fruits
-print(green, yellow, red)
+frutas_varias = ("apple", "mango", "papaya", "pineapple", "cherry")
+primero, *medio, ultimo = frutas_varias
+print(primero, medio, ultimo)
 
-fruits = ("apple", "mango", "papaya", "pineapple", "cherry")
-(green, *tropic, red) = fruits
-print(green, tropic, red)
+# Recorrido de tuplas
 
-# =====================================================
-# 6. Recorrido de tuplas
-# =====================================================
+for fruta in frutas:
+    print(fruta)
 
-fruits = ("apple", "mango", "papaya", "pineapple", "cherry")
-for x in fruits:
-    print(x)
+for i in range(len(frutas)):
+    print(frutas[i])
 
-for i in range(len(fruits)):
-    print(fruits[i])
+i = 0
+while i < len(frutas):
+    print(frutas[i])
+    i += 1
 
-x = 0
-while x < len(fruits):
-    print(fruits[x])
-    x += 1
+# Operaciones con tuplas
 
-# =====================================================
-# 7. Operaciones con tuplas
-# =====================================================
+tupla_letras = ("a", "b", "c")
+tupla_numeros = (1, 2, 3)
+tupla_combinada = tupla_letras + tupla_numeros
+print(tupla_combinada)
 
-# Unir
-tuple_1 = ("a", "b", "c")
-tuple_2 = (1, 2, 3)
-tuple_3 = tuple_1 + tuple_2
-print(tuple_3)
+frutas_repetidas = ("apple", "banana", "cherry") * 2
+print(frutas_repetidas)
 
-# Repetir
-fruits = ("apple", "banana", "cherry")
-repeated = fruits * 2
-print(repeated)
-
-# =====================================================
-# 8. Métodos de tuplas
-# =====================================================
+# Métodos de tuplas
 
 """
 count() → Cuenta cuántas veces aparece un valor en la tupla
 index() → Devuelve el índice de la primera aparición de un valor
 """
-
-example = ("apple", "banana", "cherry", "apple")
-print(example.count("apple"))   # 2
-print(example.index("banana"))  # 1

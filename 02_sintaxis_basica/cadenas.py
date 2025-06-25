@@ -1,6 +1,4 @@
-# =====================================================
 # Tema: Strings
-# =====================================================
 
 """
 Descripción:
@@ -9,117 +7,88 @@ Se pueden usar comillas dentro de cadenas, siempre que no coincidan con las que 
 Incluye todos los métodos oficiales de str con ejemplos y comentarios.
 """
 
-# =====================================================
-# 1. Sintaxis básica
-# =====================================================
+# Sintaxis básica
 
-print("It's alright")  # Comillas internas válidas
+print("It's alright")
 print("He is called 'Johnny'")
 print('He is called "Johnny"')
 
-a = "Hola"
-print(a)
+saludo = "Hola"
+print(saludo)
 
-a = '''Esta
+multi_linea = '''Esta
 es una
 cadena
 de multiples
 lineas'''
-print(a)
+print(multi_linea)
 
-a = "Hola mundo!"
-print(a[1])
+mensaje = "Hola mundo!"
+print(mensaje[1])
 
-for x in "banana":
-    print(x)
+for letra in "banana":
+    print(letra)
 
-print(len(a))
+print(len(mensaje))
 
-print("free" in a)
-if "free" in a:
+print("free" in mensaje)
+if "free" in mensaje:
     print("Sí, 'free' está presente")
-if "expensive" not in a:
+if "expensive" not in mensaje:
     print("No, 'expensive' NO está presente")
 
-# =====================================================
-# 2. Casos de uso comunes y métodos de str
-# =====================================================
+# Casos de uso comunes y métodos de str
 
-# Métodos de transformación
-print("hola mundo".capitalize())       # Primera letra en mayúscula
-print("Hola Bienvenido".casefold())    # Minúsculas para comparaciones seguras
-print("Python".lower())                # Todo a minúsculas
-print("python".upper())                # Todo a mayúsculas
-print("   texto   ".strip())           # Quita espacios al inicio y final
-print("   texto".lstrip())             # Quita espacios a la izquierda
-print("texto   ".rstrip())             # Quita espacios a la derecha
-print("Hola mundo".replace("mundo", "Python"))  # Reemplazo
-print("Hola mundo".swapcase())         # Cambia mayúsculas ↔ minúsculas
-print("hola mundo".title())            # Formato Título
+# Transformación
+print("hola mundo".capitalize())
+print("Hola Bienvenido".casefold())
+print("Python".lower())
+print("python".upper())
+print("   texto   ".strip())
+print("   texto".lstrip())
+print("texto   ".rstrip())
+print("Hola mundo".replace("mundo", "Python"))
+print("Hola mundo".swapcase())
+print("hola mundo".title())
 
-# Métodos de alineación
-print("Python".center(10, "-"))         # Centrado con relleno
-print("Python".ljust(10, "-"))          # Izquierda con relleno
-print("Python".rjust(10, "-"))          # Derecha con relleno
-print("42".zfill(6))                    # Relleno con ceros a la izquierda
+# Alineación
+print("Python".center(10, "-"))
+print("Python".ljust(10, "-"))
+print("Python".rjust(10, "-"))
+print("42".zfill(6))
 
-# Métodos de búsqueda y validación
-print("Python es genial".find("genial"))    # Índice de subcadena o -1
-print("Python es genial".rfind("o"))        # Última aparición de subcadena
-print("Python es genial".index("genial"))   # Índice o error si no existe
-print("Python es genial".rindex("o"))       # Último índice o error
-print("archivo.txt".startswith("archivo"))  # Inicia con...
-print("archivo.txt".endswith(".txt"))        # Termina con...
+# Búsqueda y validación
+print("Python es genial".find("genial"))
+print("Python es genial".rfind("o"))
+print("Python es genial".index("genial"))
+print("Python es genial".rindex("o"))
+print("archivo.txt".startswith("archivo"))
+print("archivo.txt".endswith(".txt"))
 
-# Métodos de separación y unión
-print("a,b,c".split(","))                # Divide por comas
-print("a,b,c".rsplit(","))               # Divide desde la derecha
-print("línea1\nlínea2\nlínea3".splitlines())  # Divide por saltos de línea
-print("nombre:edad:ciudad".partition(":"))    # Divide en 3 (izq, sep, der)
-print("nombre:edad:ciudad".rpartition(":"))   # Igual pero desde la derecha
-print(", ".join(["Python", "es", "genial"])) # Une lista con separador
+# Separación y unión
+print("a,b,c".split(","))
+print("a,b,c".rsplit(","))
+print("línea1\nlínea2\nlínea3".splitlines())
+print("nombre:edad:ciudad".partition(":"))
+print("nombre:edad:ciudad".rpartition(":"))
+print(", ".join(["Python", "es", "genial"]))
 
-# Métodos de verificación booleana
-print("Texto123".isalnum())       # Alfanumérico
-print("Texto".isalpha())          # Solo letras
-print("123".isdecimal())          # Solo dígitos decimales
-print("123".isdigit())            # Solo dígitos
-print("½".isnumeric())            # Numérico extendido
-print("   ".isspace())            # Solo espacios
-print("variable".isidentifier())  # Nombre válido de variable
-print("todo en minúsculas".islower())  # Todo minúscula
-print("TODO EN MAYÚSCULAS".isupper())  # Todo mayúscula
-print("Título Correcto".istitle())     # Formato título
-print("Texto visible".isprintable())   # Todos los caracteres imprimibles
-print("ASCII".isascii())               # Todos los caracteres son ASCII
+# Verificación booleana
+print("Texto123".isalnum())
+print("Texto".isalpha())
+print("123".isdecimal())
+print("123".isdigit())
+print("\u00bd".isnumeric())
+print("   ".isspace())
+print("variable".isidentifier())
+print("todo en minúsculas".islower())
+print("TODO EN MAYÚSCULAS".isupper())
+print("Título Correcto".istitle())
+print("Texto visible".isprintable())
+print("ASCII".isascii())
 
-# Métodos de codificación y traducción
-print("Hola mundo".encode("utf-8"))     # Codifica a bytes
-print("Nombre\tEdad".expandtabs(4))     # Reemplaza \t por espacios
-tabla = str.maketrans("aeiou", "12345")
-print("hola mundo".translate(tabla))    # Reemplaza usando tabla
-
-# =====================================================
-# 3. Buenas prácticas
-# =====================================================
-
-# - Usar f-strings en lugar de concatenaciones clásicas.
-# - Validar substrings con 'in' antes de usar index().
-# - Usar métodos como strip(), replace(), lower() al procesar texto.
-# - Aprovechar join() para unir estructuras con separadores.
-
-# =====================================================
-# 4. Errores comunes
-# =====================================================
-
-# - Usar index() sin validar presencia puede lanzar ValueError.
-# - No tener en cuenta que las strings son inmutables.
-# - Confundir isdigit() con isnumeric() (este último acepta más símbolos).
-# - No eliminar espacios invisibles antes de comparar strings.
-
-# =====================================================
-# 5. Recursos adicionales
-# =====================================================
-
-# - https://docs.python.org/3/library/stdtypes.html#string-methods
-# - https://www.w3schools.com/python/python_strings_methods.asp
+# Codificación y traducción
+print("Hola mundo".encode("utf-8"))
+print("Nombre\tEdad".expandtabs(4))
+tabla_traduccion = str.maketrans("aeiou", "12345")
+print("hola mundo".translate(tabla_traduccion))
