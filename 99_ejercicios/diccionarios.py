@@ -132,6 +132,7 @@ print(estudiantes["Maria"]["notas"])
 # =====================================================
 
 # 23. Crea un programa que reciba información de contacto de varias personas (nombre, teléfono, email) y la almacene en un diccionario.
+
 agenda = []
 
 while True:
@@ -146,9 +147,7 @@ while True:
         continue
 
     email = input("Ingresa el email: ")
-    if not (
-        "@" in email and email.index("@") > 0 and email.index("@") < len(email) - 1
-    ):
+    if not ("@" in email and 0 < email.index("@") < len(email) - 1):
         print("El email ingresado debe contener '@' con texto antes y después.")
         continue
 
@@ -164,15 +163,99 @@ for persona in agenda:
     print(persona)
 
 # 24. Crea una agenda con nombres como claves y lista de hobbies como valor. Imprime todos los hobbies de "Laura".
+agenda = {
+    "Elkin": {"hobbies": ["Lectura", "Yoga", "Fotografía"]},
+    "Carlos": {"hobbies": ["Programación", "Ajedrez", "Ciclismo"]},
+    "Laura": {"hobbies": ["Baile", "Cocina", "Diseño gráfico"]},
+    "Mateo": {"hobbies": ["Gaming", "Senderismo", "Edición de video"]},
+    "Sofía": {"hobbies": ["Escritura", "Voluntariado", "Idiomas"]},
+}
+print(agenda["Laura"]["hobbies"])
 
 # 25. Simula el historial de servicios de un auto como una lista de diccionarios dentro del diccionario del auto.
-
+auto = {
+    "placa": "ABC123",
+    "marca": "Toyota",
+    "modelo": "Corolla",
+    "año": 2018,
+    "historial_servicio": [
+        {
+            "fecha": "2023-01-15",
+            "kilometraje": 45000,
+            "servicio": "Cambio de aceite y filtro",
+            "taller": "AutoService S.A.",
+            "costo": 180000,
+        },
+        {
+            "fecha": "2023-06-10",
+            "kilometraje": 52000,
+            "servicio": "Revisión de frenos y alineación",
+            "taller": "Centro Automotriz Colombia",
+            "costo": 220000,
+        },
+        {
+            "fecha": "2024-02-05",
+            "kilometraje": 60000,
+            "servicio": "Cambio de batería",
+            "taller": "Baterías El Volta",
+            "costo": 350000,
+        },
+    ],
+}
 # 26. Dado un diccionario de productos con su stock, actualiza el stock de un producto específico luego de una compra.
+productos = {
+    "A1001": {"nombre": "Laptop Lenovo", "stock": 15, "precio": 3200000},
+    "B2033": {"nombre": "Mouse inalámbrico", "stock": 58, "precio": 45000},
+    "C3055": {"nombre": "Teclado mecánico", "stock": 22, "precio": 120000},
+    "D1120": {"nombre": "Monitor 24 pulgadas", "stock": 10, "precio": 780000},
+    "E5500": {"nombre": "Disco SSD 512GB", "stock": 35, "precio": 250000},
+}
+productos["A1001"]["stock"] = 50
+print(productos["A1001"])
 
 # 27. Crea una función que reciba un diccionario y devuelva una lista con todas las claves que tengan valores tipo lista.
+datos_estudiantes = {
+    "Matemáticas": ("Elkin", "Laura", "Mateo"),
+    "Física": ["Sofía", "Liseth"],
+    "Programación": ["Carlos", "Ana"],
+    "Biología": ["Laura", "Andrés"],
+    "Historia": "Mateo",
+}
+
+
+def extraer_valores_lista(diccionario):
+    resultado = []
+    for llave, valor in diccionario.items():
+        if isinstance(valor, list):
+            resultado.append({llave: valor})
+    return resultado
+
+
+diccionario = extraer_valores_lista(datos_estudiantes)
+for valores in diccionario:
+    print(valores)
 
 # 28. Crea un diccionario que represente una factura: cliente, productos (lista), total. Recorre el diccionario e imprime la factura.
+factura = {"cliente_1": {"nombre": "Elkin"}}
+
+factura["cliente_1"].update({"productos": productos})
+
+precios = []
+productos_cliente = factura["cliente_1"].get("productos", {})
+for producto_id, detalle in productos_cliente.items():
+    precio = detalle.get("precio")
+    if precio is not None:
+        precios.append(precio)
+
+factura["cliente_1"]["total"] = round(sum(precios), 2)
+
+for cliente_id, info in factura.items():
+    print(f"{cliente_id}: {info}")
 
 # 29. Usa fromkeys() para crear un diccionario con claves ["a", "b", "c"] y el mismo valor 0.
+diccionario = dict.fromkeys(("a", "b", "c"), 0)
+print(diccionario)
 
 # 30. Usa comprensión de diccionarios para crear un nuevo diccionario con claves del 1 al 5 y valores al cuadrado.
+comprension = {x: x**2 for x in range(1, 6)}
+print(comprension)
