@@ -6,77 +6,106 @@ En Python hay dos tipos principales de loops:
 - for: Se usa para recorrer secuencias (listas, tuplas, cadenas, rangos, etc)
 - while: Se usa para repetir un bloque de código mientras una condición sea verdadera
 """
+# Tema: Bucles
 
-# # while
-# i = 1
-# while i < 6:
-#     print(i)
-#     i += 1
+"""
+Descripción:
+Permiten ejecutar un bloque de código varias veces. Python ofrece bucles while y for, junto con instrucciones como break, continue y pass para controlar el flujo.
+"""
 
-# # Declaración de break, para detener el bloque de código
-# i = 1
-# while i < 11:
-#     print(i)
-#     if i == 3:
-#         break
-#     i += 1
+# Sintaxis básica
 
-# # Declaración de continue
-# i = 1
-# while i < 5:
-#     i += 1
-#     if i == 3:
-#         continue
-#     print(i)
+conteo = 0
+while conteo < 5:
+    print(conteo)
+    conteo += 1
 
-# # Sentencia else
-# i = 1
-# while i < 6:
-#     print(i)
-#     i += 1
-# else:
-#     print("i ya no es menor que 6")
+conteo = 0
+while conteo < 5:
+    print(conteo)
+    conteo += 1
+else:
+    print(f"Resultado del else {conteo}")
 
-# # Bucles For
-# fruits = ["apple", "banana", "cherry"]
-# for x in fruits:
-#     print(x)
+conteo = 0
+while conteo < 5:
+    print(conteo)
+    conteo += 1
+    if conteo == 3:
+        break
 
-# # Bucle a traves de cadenas
-# for x in "banana":
-#     print(x)
+conteo = 0
+while conteo < 5:
+    if conteo == 3:
+        conteo += 1
+        continue
+    print(conteo)
+    conteo += 1
 
+# Bucle for con diferentes estructuras
 
-# fruits = ["apple", "banana", "cherry"]
-# for x in fruits:
-#     print(x)
-#     if x == "banana":
-#         break
+numeros = [1, 2, 3, 4, 5]
+for numero in numeros:
+    print(numero)
 
+cadena = "Python"
+for caracter in cadena:
+    print(caracter)
 
-# fruits = ["apple", "banana", "cherry"]
-# for x in fruits:
-#     if x == "banana":
-#         break
-#     print(x)
+tupla = (1, 2, 3, 4, 5)
+for numero in tupla:
+    print(numero)
 
-# # Declaracion de contienue
-# fruits = ["apple", "banana", "cherry"]
-# for x in fruits:
-#     if x == "banana":
-#         continue
-#     print(x)
+persona = {
+    "nombre": "Elkin",
+    "apellido": "Jaramillo",
+    "edad": 27,
+    "pais": "Colombia",
+    "habilidades": ["SQL", "Python"],
+    "direccion": "soacha",
+    "codigo_postal": 250052
+}
+for clave, valor in persona.items():
+    print(clave, valor)
 
-# # funcion range()
-# for x in range(6):
-#     print(x)
+empresas = {"Facebook", "Google", "Microsoft", "Apple", "IBM", "Oracle", "Amazon"}
+for empresa in empresas:
+    print(empresa)
 
-# # definico de rango
-# for x in range(2, 6):
-#     print(x)
+# break y continue en for
 
-# # Incrementa la secuencia con 3
-# for x in range(2, 30, 3):
-#     print(x)
+numeros = (1, 2, 3, 4, 5)
+for num in numeros:
+    if num == 3:
+        break
+    print(num)
 
-# Else en bucle for
+for num in numeros:
+    if num == 3:
+        continue
+    print(num)
+
+# range
+
+print(list(range(11)))
+print(set(range(11)))
+print(list(range(1, 11, 2)))
+print(set(range(1, 11, 2)))
+
+for number in range(11):
+    print(number)
+
+for clave in persona:
+    if clave == "habilidades":
+        for habilidad in persona["habilidades"]:
+            print(habilidad)
+
+for number in range(11):
+    print(number)
+else:
+    print("fin del bucle")
+
+# pass
+
+for num in range(11):
+    pass
