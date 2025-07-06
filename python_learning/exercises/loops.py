@@ -3,6 +3,7 @@
 # =====================================================
 
 # 1. Itera del 0 al 10 usando el bucle for.
+import json
 from paises import countries
 for i in range(0, 11):
     print(i)
@@ -106,10 +107,49 @@ print(f"Impar: {impar}")
 for country in countries:
     if "land" in country:
         print(country)
-
 # 14. Dada la lista ['plátano', 'naranja', 'mango', 'limón'] invierte el orden usando un bucle.
+lista = ['plátano', 'naranja', 'mango', 'limón']
+lista_invertida = []
+
+for i in range(len(lista) - 1, -1, - 1):
+    lista_invertida.append(lista[i])
+print(lista_invertida)
+
 
 # 15. Con el archivo países_datos.py:
 #     a) ¿Cuál es el número total de idiomas en los datos?
 #     b) Encuentra los diez idiomas más hablados a partir de los datos.
 #     c) Encuentra los 10 países más poblados del mundo.
+
+with open("./paises_data.json", "r", encoding="utf-8") as file:
+    paises = json.load(file)
+
+# Total idiomas
+idiomas = []
+for elementos in paises:
+    for idioma in elementos['languages']:
+        idiomas.append(idioma)
+
+print(f"Total idiomas:\n{len(set(idiomas))}")
+
+# Contar idiomas manualmente
+conteo = {}
+for idioma in idiomas:
+    if idioma in conteo:
+        conteo[idioma] += 1
+    else:
+        conteo[idioma] = 1
+
+# 10 idiomas más hablados
+top_10_idiomas = dict(
+    sorted(conteo.items(), key=lambda x: x[1], reverse=True)[:10])
+print(f"Idiomas más hablados:\n{top_10_idiomas}")
+
+# 10 países más poblados
+poblaciones = []
+for elementos in paises:
+    poblaciones.append((elementos['name'], elementos['population']))
+
+top_10_poblacion = dict(
+    sorted(poblaciones, key=lambda x: x[1], reverse=True)[:10])
+print(f"Países más poblados:\n{top_10_poblacion}")
