@@ -6,12 +6,10 @@
 # - Pide al usuario que ingrese su edad usando input("Ingresa tu edad: ").
 # - Si el usuario tiene 18 años o más, muestra un mensaje que diga que tiene la edad suficiente para aprender a conducir.
 # - Si es menor de 18 años, muestra un mensaje que diga cuántos años faltan para que pueda aprender a conducir.
-
 try:
-import math
- edad = int(input("Ingresa tu edad: "))
-  print(f"Tu edad es {edad}")
-   if edad > 17:
+    edad = int(input("Ingresa tu edad: "))
+    print(f"Tu edad es {edad}")
+    if edad > 17:
         print("Tiene edad suficiente para aprender a conducir")
     else:
         print(f"Te falta {18 - edad} años para aprender a conducir")
