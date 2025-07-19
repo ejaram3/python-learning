@@ -3,6 +3,11 @@
 # =====================================================
 
 # Declarar una función agregar_dos_números. Toma dos parámetros y devuelve una suma.
+import json
+import keyword
+import math
+
+
 def agregar_dos_numeros(num1, num2):
     return num1 + num2
 
@@ -187,13 +192,13 @@ def suma_pares(rango):
 # Declarar una función llamada evens_and_odds. Toma un número entero positivo como parámetro y cuenta el número de pares y probabilidades en el número.
 # print(evens_and_odds(100))
 # The number of odds are 50.
-# The number of evens are 51.
+# The number of evens are 51.parsssss
 
 def evens_and_odds(numero: int):
     pares = 0
     impares = 0
 
-    for i in range(numero + 1):  
+    for i in range(numero + 1):
         if i % 2 == 0:
             pares += 1
         else:
@@ -203,14 +208,89 @@ def evens_and_odds(numero: int):
     print(f"The number of evens are {pares}.")
 
 
-evens_and_odds(100)
+# evens_and_odds(100)
 
 # Llama a tu función factorial, toma un número entero como parámetro y devuelve un factorial del número
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n-1)
 
 # Llama a tu función está_vacío, toma un parámetro y comprueba si está vacío o no
 
+
+def esta_vacio(valor):
+    if not valor:
+        return True
+    else:
+        return False
+
 # Escriba diferentes funciones que tomen listas.
 # Deben calcular_media, calcular_mediana, calcular_modo, calcular_rango, calcular_varianza, calcular_std (desviación estándar).
+
+
+def mediana(lista: list) -> float:
+    if not lista:
+        raise ValueError("La lista no puede estar vacía")
+
+    lista_ordenada = sorted(lista)
+    n = len(lista_ordenada)
+    medio = n // 2
+
+    if n % 2 == 0:
+        return (lista_ordenada[medio - 1] + lista_ordenada[medio]) / 2
+    else:
+        return lista_ordenada[medio]
+
+
+def media(lista: list) -> list:
+    base = int(len(lista) / 2)
+
+    if len(lista) % 2 == 0:
+        media = lista[base - 1: base + 1]
+    else:
+        media = lista[base]
+    return media
+
+
+def modo(lista: list):
+    resultado = []
+    for n in lista:
+        resultado.append((n, (lista.count(n))))
+
+    return list(set(resultado))
+
+
+lista = [1, 2, 4, 5, 1, 2, 4, 2, 1]
+
+
+def rango(lista: list):
+    rango = max(lista) - min(lista)
+    return rango
+
+
+def varianza(datos, poblacional=True):
+    n = len(datos)
+    media = sum(datos) / n
+    suma_cuadrados = sum((x - media) ** 2 for x in datos)
+
+    if poblacional:
+        return suma_cuadrados / n
+    else:
+        return suma_cuadrados / (n - 1)
+
+
+def desviacion_estandar(datos, poblacional=True):
+    n = len(datos)
+    media = sum(datos) / n
+    suma_cuadrados = sum((x - media) ** 2 for x in datos)
+
+    if poblacional:
+        varianza = suma_cuadrados / n
+    else:
+        varianza = suma_cuadrados / (n - 1)
+
+    return math.sqrt(varianza)
 
 # =====================================================
 # Ejercicios: Nivel 3
@@ -218,16 +298,82 @@ evens_and_odds(100)
 
 # Escriba una función llamada is_prime, que verifique si un número es primo.
 
+
+def es_primo(n):
+    if n <= 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+
+    for i in range(3, int(n ** 0.5) + 1, 2):
+        if n % i == 0:
+            return False
+
+    return True
+
+
 # Escriba una función que verifique si todos los elementos son únicos en la lista.
+
+def elementos_unicos(lista: list):
+    if len(lista) != len(set(lista)):
+        return "Lista con registros duplicados"
+    return "Registros únicos en la lista"
 
 # Escriba una función que verifique si todos los elementos de la lista son del mismo tipo de datos.
 
+
+def mismo_tipo(lista):
+    if not lista:
+        return True
+
+    tipo_base = type(lista[0])
+    for elem in lista[1:]:
+        if type(elem) != tipo_base:
+            return False
+    return True
+
 # Escriba una función que verifique si la variable proporcionada es una variable de Python válida
 
-# Vaya a la carpeta de datos y acceda al archivo countries-data.py.
 
+def valida_en_python(variable):
+    return variable.isidentifier() and not keyword.iskeyword(variable)
+
+
+# Vaya a la carpeta de datos y acceda al archivo countries-data.py.
 # Crea una función llamada los idiomas_más_hablados del mundo.
 # Debería devolver 10 o 20 de los idiomas más hablados del mundo en orden descendente
 
+with open("./paises_data.json", "r", encoding="utf-8") as file:
+    paises = json.load(file)
+
+
+def idiomas_mas_hablados(paises):
+    idiomas = []
+    for elementos in paises:
+        for idioma in elementos['languages']:
+            idiomas.append(idioma)
+    conteo = {}
+    for idioma in idiomas:
+        if idioma in conteo:
+            conteo[idioma] += 1
+        else:
+            conteo[idioma] = 1
+
+    return dict(
+        sorted(conteo.items(), key=lambda x: x[1], reverse=True)[:10])
+
+
 # Crea una función llamada los países_más_poblados.
 # Debería devolver 10 o 20 países más poblados en orden descendente.
+def paises_poblados(paises):
+    poblaciones = []
+    for elementos in paises:
+        poblaciones.append((elementos['name'], elementos['population']))
+
+    return dict(
+        sorted(poblaciones, key=lambda x: x[1], reverse=True)[:10])
+
+
+print(paises_poblados(paises))
