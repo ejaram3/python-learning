@@ -1,3 +1,4 @@
+import json
 from countries import countries
 from functools import reduce
 countries = ['Estonia', 'Finland', 'Sweden', 'Denmark', 'Norway', 'Iceland']
@@ -129,14 +130,79 @@ print(reduce_countries)
 
 # Declare una función llamada categorize_countries que devuelve una lista de países con algún patrón común (puede encontrar la lista de países en este repositorio como countries.js (por ejemplo, 'land', 'ia', 'island', 'stan')).
 
-from countries import countries
 
 def categorize_countries(countries):
     patterns = ['land', 'ia', 'island', 'stan']
     return list(filter(lambda country: any(p in country for p in patterns), countries))
 
+
 print(categorize_countries(countries))
 
-# Cree una función que devuelva un diccionario, donde las claves se defien a las letras iniciales de los países y los valores son el número de nombres de países que comienzan con esa letra.
+# Cree una función que devuelva un diccionario, donde las claves representan las letras iniciales de los países y los valores son la cantidad de nombres de países que comienzan con esa letra.
+
+
+def return_dict(lst):
+    return reduce(
+        lambda acc, item: acc.update(
+            {item[0].upper(): acc.get(item[0].upper(), 0) + 1}) or acc,
+        lst,
+        {}
+    )
+
+
+print(return_dict(countries))
+
 # Declara una función get_first_ten_countries - devuelve una lista de los primeros diez países de la lista countries.js en la carpeta de datos.
+
+
+def get_first_ten_countries(lst):
+    return lst[:10]
+
+
+print(get_first_ten_countries(countries))
+
 # Declara una función get_last_ten_countries que devuelve los últimos diez países de la lista de países.
+
+
+def get_last_ten_countries(lst):
+    return lst[-10:]
+
+
+print(get_last_ten_countries(countries))
+# Utilice countries_data.py (https://github.com/Asabeneh/30-Days-Of-Python/blob/master/data/countries-data.py) archivar y seguir las tareas siguientes:
+
+with open("/workspaces/python-learning/python_learning/exercises/countries_data.json", "r", encoding="utf-8") as file:
+    data = json.load(file)
+
+# Ordenar países por nombre, capital y población
+orden_por_nombre = sorted(data, key=lambda x: x["name"])
+
+orden_por_capital = sorted(data, key=lambda x: x["capital"])
+
+orden_por_poblacion = sorted(data, key=lambda x: x["population"], reverse=True)
+
+list(map(lambda x: print(
+    f'{x["name"]} - {x["capital"]} - {x["population"]}'), orden_por_nombre[:5]))
+
+# Ordenar los diez idiomas más hablados por número de países
+idioma_paises = reduce(
+    lambda acc, country: reduce(
+        lambda acc2, lang: acc2.update({lang: acc2.get(lang, 0) + 1}) or acc2,
+        set(country["languages"]),
+        acc
+    ),
+    data,
+    {}
+)
+
+top_10_idiomas = sorted(idioma_paises.items(),
+                        key=lambda x: x[1], reverse=True)[:10]
+
+list(map(lambda x: print(f"{x[0]}: {x[1]} países"), top_10_idiomas))
+
+# Ordenar los diez países más poblados
+top_10_paises_poblados = sorted(
+    data, key=lambda x: x["population"], reverse=True)[:10]
+
+list(map(lambda x: print(
+    f"{x['name']}: {x['population']} habitantes"), top_10_paises_poblados))
