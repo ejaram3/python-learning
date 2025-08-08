@@ -5,6 +5,8 @@ __pycache__/
 
 # C extensions
 *.so
+# Files
+files/
 
 # Distribution / packaging
 .Python
@@ -193,3 +195,5 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 .DS_Store
+python_learning/exercises/__init__.py
+python_learning/exercises/test.py
